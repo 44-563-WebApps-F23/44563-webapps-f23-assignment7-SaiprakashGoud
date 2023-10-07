@@ -36,6 +36,7 @@
     Help report.
 </div>
 
+
 <div class="container">
     <div class="row">
         <div class="col-sm">
@@ -152,6 +153,7 @@
         </div>
     </div>
 </div>
+<button type="button" class="btn btn-danger">New </button>
 <script>
     let treasureIds=["treasuremap1","treasuremap2","treasuremap3","treasuremap4","treasuremap5",
     "treasuremap6","treasuremap7","treasuremap8","treasuremap9","treasuremap10","treasuremap11",
@@ -161,8 +163,8 @@
     var checkCount =0
     var penalty=0
     var lastCheck=0
-    var treasureLocation=5;
-    var trapLocation=18;
+    var treasureLocation=Math.floor(Math.random() * 25);;
+    var trapLocation=Math.floor(Math.random() * 25);;
     var gameOver=false
     
     function check(position){
@@ -227,6 +229,24 @@
         else{
             document.getElementById("help").innerHTML="Step Faster"
         }        
+    }
+    function bonus() {
+      let treasureLocation = Math.floor(Math.random() * 25);
+      console.log("treasure location " + treasureLocation);
+      let trapLocation = Math.floor(Math.random() * 25);
+      console.log("trap location " + trapLocation);
+      document.getElementById("locations").innerText =
+        "No of locations checked is " + 0;
+      document.getElementById("penalty").innerText = "Penalty is " + 0;
+      for (i = 0; i < 25; i++) {
+        if (i == treasureLocation) {
+          document.getElementById(imageID[i]).src = "treasure.jpg";
+        } else if (i == trapLocation) {
+          document.getElementById(imageID[i]).src = "trap.jpg";
+        } else {
+          document.getElementById(imageID[i]).src = "hat.jpg";
+        }
+      }
     }
 </script>
 

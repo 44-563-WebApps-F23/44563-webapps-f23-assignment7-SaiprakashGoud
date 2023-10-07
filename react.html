@@ -31,13 +31,20 @@
         console.log("React time:"+reactTime)
     }
 </script>
-  
+  <script>
+    function randomCount(){
+        let randomCount = Math.floor(Math.random()*9 ) + 2;
+        return randomCount;
+    startTime()
+    }
+  </script>
   <script> 
   function startTime() {
-    for(let i=0;i<9;i++){
+    let count=randomCount();
+    for(let i=0;i<count;i++){
         setTimeout(function(){
         document.getElementById('counter').innerHTML="counter is:"+ i
-        }, (8-i)*1000)
+        }, (count-i)*1000)
     }
         setTimeout(function(){
             if(reactTime==undefined){
