@@ -153,7 +153,7 @@
         </div>
     </div>
 </div>
-<button type="button" class="btn btn-danger">New </button>
+<button type="button" class="btn btn-danger" id="newGameButton">New Game </button>
 <script>
     let treasureIds=["treasuremap1","treasuremap2","treasuremap3","treasuremap4","treasuremap5",
     "treasuremap6","treasuremap7","treasuremap8","treasuremap9","treasuremap10","treasuremap11",
@@ -202,7 +202,7 @@
             }
 
             lastCheck=position;
-            console.log("last check position is"+ lastCheck);
+            console.log("last check position is "+ lastCheck);
             document.getElementById("locations").innerHTML="Number of locations checked:"+ checkCount;
             document.getElementById("penalty").innerHTML="Total Penalty points :"+ penalty;
         }
@@ -230,23 +230,30 @@
             document.getElementById("help").innerHTML="Step Faster"
         }        
     }
-    function bonus() {
-      let treasureLocation = Math.floor(Math.random() * 25);
-      console.log("treasure location " + treasureLocation);
-      let trapLocation = Math.floor(Math.random() * 25);
-      console.log("trap location " + trapLocation);
-      document.getElementById("locations").innerText =
-        "No of locations checked is " + 0;
-      document.getElementById("penalty").innerText = "Penalty is " + 0;
-      for (i = 0; i < 25; i++) {
-        if (i == treasureLocation) {
-          document.getElementById(imageID[i]).src = "treasure.jpg";
-        } else if (i == trapLocation) {
-          document.getElementById(imageID[i]).src = "trap.jpg";
-        } else {
-          document.getElementById(imageID[i]).src = "hat.jpg";
+    const newGameButton = document.getElementById("newGameButton");
+    newGameButton.addEventListener("click", resetGame);
+    function resetGame() {
+        if(gameOver == true)
+        {
+            checkCount=0;
+            penalty=0;
+            gameOver=false;
+
+            treasureLocation = Math.floor(Math.random() * 25);      
+            trapLocation = Math.floor(Math.random() * 25);
+      
+            for (let i = 0; i < 25; i++) {
+            const id = treasureIds[i];
+            document.getElementById(id).src = "treasure_map.jpg";  
+    }
+            document.getElementById("locations").innerHTML = "Number of locations checked: " + checkCount;
+            document.getElementById("penalty").innerHTML = "Total Penalty points: " + penalty;
+            document.getElementById("help").innerHTML = "Help report.";
+
+            console.log("New Game started");
+            console.log("treasure location " + treasureLocation); 
+            console.log("trap location " + trapLocation);
         }
-      }
     }
 </script>
 
